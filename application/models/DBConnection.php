@@ -2,7 +2,7 @@
 
 
 namespace models;
-
+require_once __DIR__.'/../../vendor/autoload.php';
 
 class DBConnection
 {
@@ -40,10 +40,10 @@ class DBConnection
         $this->connection->query($query);
         if(!empty($this->connection->error_list))
         {
+            //use only in dedug mode
             var_dump($this->connection->error_list);
         }
     }
-
     protected function __destruct()
     {
         $this->connection->close();

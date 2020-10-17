@@ -6,14 +6,46 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitb04642e6ed930961454955abf81a2518
 {
-    public static $fallbackDirsPsr4 = array (
-        0 => '/',
+    public static $prefixLengthsPsr4 = array (
+        'v' => 
+        array (
+            'views\\' => 6,
+        ),
+        'm' => 
+        array (
+            'models\\' => 7,
+        ),
+        'c' => 
+        array (
+            'core\\' => 5,
+            'controllers\\' => 12,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'views\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/application/views',
+        ),
+        'models\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/application/models',
+        ),
+        'core\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/core',
+        ),
+        'controllers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/application/controllers',
+        ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->fallbackDirsPsr4 = ComposerStaticInitb04642e6ed930961454955abf81a2518::$fallbackDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb04642e6ed930961454955abf81a2518::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb04642e6ed930961454955abf81a2518::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }

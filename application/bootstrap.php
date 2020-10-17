@@ -1,3 +1,3 @@
 <?php
-
-Route::start(); // запускаем маршрутизатор
+require_once __DIR__.'/../vendor/autoload.php';
+core\Route::start(); // запускаем маршрутизатор

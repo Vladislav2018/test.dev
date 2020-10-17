@@ -15,7 +15,10 @@
     {
         "psr-4":
         {
-            "":"/"
+            "core\\":"core/",
+            "models\\":"application/models/",
+            "controllers\\": "application/controllers/",
+            "views\\": "application/views/"
         }
     }
 }
