@@ -1,0 +1,21 @@
+{
+    "name": "user/test.dev",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vladislav Blazhkiv",
+            "email": "olegovich.vladislav@yahoo.com"
+        }
+    ],
+    "require":
+    {
+    },
+    "autoload":
+    {
+        "psr-4":
+        {
+            "":"/"
+        }
+    }
+}
