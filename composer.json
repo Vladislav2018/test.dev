@@ -1,0 +1,25 @@
+{
+    "name": "user/test.dev",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Blazhkiv Vladislav",
+            "email": "olegovich.vladislav@yahoo.com"
+        }
+    ],
+    "require":
+    {
+
+    },
+    "autoload":
+    {
+        "psr-4":
+        {
+            "core\\": "core",
+            "application\\controllers\\": "controllers",
+            "application\\models\\": "models",
+            "application\\views\\": "views"
+        }
+    }
+}
