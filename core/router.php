@@ -2,29 +2,32 @@
 
 
 namespace core;
-
+use application\controllers;
+use application\models;
 class Router
 {
     public static function buildRoute()
     {
         //контроллер по умолчанию
-        $controllerName = "indexcontroller";
-        $modelName = "indexmodel";
+        $controllerName = "IndexController";
+        $modelName = "IndexModel";
         $action = "index";
 
         $route = explode("/", $_SERVER['REQUEST_URI']);
         //если URI не пустой, то определяем соотв. контроллер
         if($route[1] != '')
         {
-            $controllerName = $route[1]."controller";
-            $modelName = $route[1]."model";
+            $controllerName = ucfirst($route[1]. "Controller");
+            $modelName = ucfirst($route[1]. "Model");
         }
-        include '../application/controllers/'.$controllerName.'.php';
-        include '../application/models/'.$modelName.'.php';
+        include __DIR__.'/../application/controllers/'.$controllerName.'.php';
+        include __DIR__.'/../application/models/'.$modelName.'.php';
         if(isset($route[2]) && $route[2] != '')
         {
             $action = $route[2];
         }
+
+        $controllerName = '\\application\\controllers\\'.$controllerName;
         $controller = new $controllerName();
         $controller->$action();
     }

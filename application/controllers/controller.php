@@ -2,6 +2,8 @@
 
 
 namespace application\controllers;
+use application\views\View as View;
+use application\models\Model as Model;
 
 class Controller
 {

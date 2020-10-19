@@ -5,10 +5,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Tasks</title>
-
+    <?php
+    include 'elements/libs_head.php';
+    ?>
 </head>
 <body>
-<a href="">Admin</a>
+<h3>
+    <? ?>
+    <a href="<?php echo $pageData['link'] ?>" style="margin-left: 1%"><?php echo $pageData['label'] ?></a>
+    <a href="/addtask" style="margin-left: 80%">Add task</a>
+</h3>
 <center>
     <table class="table table-bordered">
         <thead>
@@ -17,6 +23,9 @@
             <th scope="col" class = "mail" style="width: 15%">User mail</th>
             <th scope="col" class = "username" style="width: 15%">Username</th>
             <th scope="col" class = "task" style="width: 65%">Task</th>
+            <?if($pageData['mode'] == 'admin'): ?>
+            <th scope="col" class = "select" style="width: 65%">Select</th>
+            <? endif; ?>
         </tr>
         </thead>
         <tbody>
@@ -24,8 +33,7 @@
             <th scope="row"></th>
             <td></td>
             <td></td>
-            <td>
-            </td>
+            <td></td>
 
         </tbody>
     </table>
@@ -50,5 +58,8 @@ margin-top: 5%">
         </ul>
     </nav>
 </center>
+<?php
+include 'elements/libs_body.php';
+?>
 </body>
 </html>

@@ -4,7 +4,7 @@
 namespace application\models;
 use application\models\Model as Model;
 
-class IndexModel extends Model
+class LogoutModel extends Model
 {
 
 }
