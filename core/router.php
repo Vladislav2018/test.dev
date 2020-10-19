@@ -2,24 +2,25 @@
 
 
 namespace core;
-require_once __DIR__.'../vendor/autoload.php';
 
 class Router
 {
     public static function buildRoute()
     {
         //контроллер по умолчанию
-        $controllerName = "IndexController";
-        $modelName = "IndexModel";
+        $controllerName = "indexcontroller";
+        $modelName = "indexmodel";
         $action = "index";
 
         $route = explode("/", $_SERVER['REQUEST_URI']);
         //если URI не пустой, то определяем соотв. контроллер
         if($route[1] != '')
         {
-            $controllerName = ucfirst($route[1]."Controller");
-            $modelName = ucfirst($route[1]."Model");
+            $controllerName = $route[1]."controller";
+            $modelName = $route[1]."model";
         }
+        include '../application/controllers/'.$controllerName.'.php';
+        include '../application/models/'.$modelName.'.php';
         if(isset($route[2]) && $route[2] != '')
         {
             $action = $route[2];
