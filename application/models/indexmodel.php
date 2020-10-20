@@ -29,4 +29,15 @@ class IndexModel extends Model
         $res['pages'] = ceil( (float)$res['strings'][0]/(float)$limit) ;
         return $res;
     }
+    public function delete_items($post)
+    {
+        if(!isset($post))
+            return;
+        $action = $post['action'];
+        unset($post['action']);
+
+        $delete_query = $action." FROM tasks WHERE id IN (" . implode(',', array_map('intval', $post)) . ")";
+        $stmp = $this->db->prepare($delete_query);
+        $stmp->execute();
+    }
 }

@@ -39,8 +39,7 @@
             <td><?echo $number['task']?></td>
             <?if($_SESSION['admin'] == true): ?>
                 <td>
-                    <input type="hidden" name = 'to_del' value= <?echo $number['id']?> />
-                    <input type="checkbox">
+                    <input type="checkbox" name = '<?echo $number['id']?>' value= <?echo $number['id']?>>
                 </td>
             <? endif; ?>
 
@@ -48,7 +47,7 @@
         <?endforeach;?>
         </tbody>
     </table>
-    </form>
+
     <nav aria-label="Page navigation example" style="margin-left: 45%;
 margin-top: 5%">
         <ul class="pagination">
@@ -63,13 +62,14 @@ margin-top: 5%">
     </nav>
     <?//var_dump($pageData['tasks']['count'][0])?>
     <? if($_SESSION['admin'] == true): ?>
-    <imput type="submit" class="btn btn-outline-danger">Delete</imput>
+    <input type="submit" name="action" class="btn btn-outline-danger" value="DELETE" >
     <?endif;?>
+    </form>
 </center>
 <?php
 include 'elements/libs_body.php';
 echo '<pre>';
-print_r($_GET);
+//print_r($_POST);
 echo '</pre>';
 ?>
 </body>

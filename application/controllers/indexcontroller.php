@@ -19,7 +19,13 @@ class IndexController extends \application\controllers\Controller
     {
         $this->pageData['title'] = 'All tasks';
         $this->checkAdmin($_SESSION['admin']);
+        if(!isset($_GET['page_']))
+            $_GET['page_'] = $_GET['page'];
         $this->loadtasks($_GET['page_']);
+        if(!empty($_POST))
+        {
+            $this->del_tasks($_POST);
+        }
         $this->view->render($this->pageTemplate, $this->pageData);
     }
     public function checkAdmin($sess_adm)
@@ -28,13 +34,11 @@ class IndexController extends \application\controllers\Controller
         {
             $this->pageData['link'] = '/logout';
             $this->pageData['label'] = 'Log out';
-            $this->pageData['mode'] = 'admin';
         }
         else
         {
             $this->pageData['link'] = '/auth';
             $this->pageData['label'] = 'Admin';
-            $this->pageData['mode'] = 'user';
         }
 
     }
@@ -43,5 +47,10 @@ class IndexController extends \application\controllers\Controller
         $limit = 3;
         $start_string = ($current_page_num-1)*$limit;
         $this->pageData['tasks'] = $this->model->load_tasks($limit, $start_string);
+    }
+    public function del_tasks($post)
+    {
+        $this->model->delete_items($post);
+        header("Refresh:0");
     }
 }
