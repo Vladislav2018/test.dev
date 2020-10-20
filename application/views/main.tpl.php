@@ -16,6 +16,7 @@
     <a href="/addtask" style="margin-left: 80%">Add task</a>
 </h3>
 <center>
+    <form method="post">
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -23,43 +24,53 @@
             <th scope="col" class = "mail" style="width: 15%">User mail</th>
             <th scope="col" class = "username" style="width: 15%">Username</th>
             <th scope="col" class = "task" style="width: 65%">Task</th>
-            <?if($pageData['mode'] == 'admin'): ?>
-            <th scope="col" class = "select" style="width: 65%">Select</th>
+            <?if($_SESSION['admin'] == true): ?>
+            <th scope="col" class = "select" style="width: 65%">Select for delete</th>
             <? endif; ?>
         </tr>
         </thead>
         <tbody>
+        <?foreach ($pageData['tasks']['request'] as &$number): ?>
         <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
 
+            <th scope="row"><?echo $number['id']?></th>
+            <td><?echo $number['email']?></td>
+            <td><?echo $number['nickname']?></td>
+            <td><?echo $number['task']?></td>
+            <?if($_SESSION['admin'] == true): ?>
+                <td>
+                    <input type="hidden" name = 'to_del' value= <?echo $number['id']?> />
+                    <input type="checkbox">
+                </td>
+            <? endif; ?>
+
+        </tr>
+        <?endforeach;?>
         </tbody>
     </table>
+    </form>
     <nav aria-label="Page navigation example" style="margin-left: 45%;
 margin-top: 5%">
         <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
+            <?for($i = 1;$i<=$pageData['tasks']['count']['pages']; $i++):?>
+                <?if ($i == $_GET['page_']):?>
+                    <li class="page-item"><a style="color: gray" class="page-link" href=""><?echo $i?></a></li>
+                    <?continue;?>
+                <?endif; ?>
+                <li class="page-item"><a class="page-link" href="page?page = <?echo $i?>"><?echo $i?></a></li>
+            <? endfor;?>
         </ul>
     </nav>
+    <?//var_dump($pageData['tasks']['count'][0])?>
+    <? if($_SESSION['admin'] == true): ?>
+    <imput type="submit" class="btn btn-outline-danger">Delete</imput>
+    <?endif;?>
 </center>
 <?php
 include 'elements/libs_body.php';
+echo '<pre>';
+print_r($_GET);
+echo '</pre>';
 ?>
 </body>
 </html>

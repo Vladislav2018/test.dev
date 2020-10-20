@@ -3,8 +3,6 @@
 
 namespace application\controllers;
 
-
-
 class LogoutController extends Controller
 {
     public function __construct()

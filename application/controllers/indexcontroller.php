@@ -10,6 +10,8 @@ class IndexController extends \application\controllers\Controller
     public $pageData = array();
     public function __construct()
     {
+        $this->pageData['page'] = 1;
+        $_GET['page'] = $this->pageData['page'];
         $this->model = new IndexModel();
         $this->view = new View();
     }
@@ -17,6 +19,8 @@ class IndexController extends \application\controllers\Controller
     {
         $this->pageData['title'] = 'All tasks';
         $this->checkAdmin($_SESSION['admin']);
+        $this->loadtasks($_GET['page_']);
+        $this->view->render($this->pageTemplate, $this->pageData);
     }
     public function checkAdmin($sess_adm)
     {
@@ -32,8 +36,12 @@ class IndexController extends \application\controllers\Controller
             $this->pageData['label'] = 'Admin';
             $this->pageData['mode'] = 'user';
         }
-        $this->view->render($this->pageTemplate, $this->pageData);
-        //var_dump($pageData);
 
+    }
+    public function loadtasks($current_page_num)
+    {
+        $limit = 3;
+        $start_string = ($current_page_num-1)*$limit;
+        $this->pageData['tasks'] = $this->model->load_tasks($limit, $start_string);
     }
 }

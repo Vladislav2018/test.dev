@@ -22,6 +22,10 @@ class AddtaskController extends Controller
     {
         if(isset($_SESSION['email']))
             $this->admin_view($_SESSION['email']);
+        else
+        {
+            $this->pageData['mode'] = 'user';
+        }
         $this->view->render($this->pageTemplate, $this->pageData);
         if(!empty($_POST))
         {
@@ -35,6 +39,11 @@ class AddtaskController extends Controller
         $this->pageData['link'] = '/logout';
         $this->pageData['label'] = 'Log out';
         $this->pageData['mode'] = 'admin';
+        $nick = $this->model->get_admin_nickname($_SESSION['email']);
+        if (!empty($nick))
+        {
+            $this->pageData['nick'] = $nick;
+        }
     }
 
     public function get_task()
