@@ -21,11 +21,12 @@
         <thead>
         <tr>
             <th scope="col" class ="t_number" style="width: 5%">#</th>
-            <th scope="col" class = "mail" style="width: 15%">User mail</th>
-            <th scope="col" class = "username" style="width: 15%">Username</th>
+            <th scope="col" class = "mail" style="width: 15%">User mail
+            <th scope="col" class = "username" style="width: 15%">Nickname</th>
             <th scope="col" class = "task" style="width: 65%">Task</th>
+            <th scope="col" class = "task" style="width: 65%">Status</th>
             <?if($_SESSION['admin'] == true): ?>
-            <th scope="col" class = "select" style="width: 65%">Select for delete</th>
+            <th scope="col" class = "select" style="width: 65%">Select for action</th>
             <? endif; ?>
         </tr>
         </thead>
@@ -37,6 +38,7 @@
             <td><?echo $number['email']?></td>
             <td><?echo $number['nickname']?></td>
             <td><?echo $number['task']?></td>
+            <td><?echo $number['tstatus']?></td>
             <?if($_SESSION['admin'] == true): ?>
                 <td>
                     <input type="checkbox" name = '<?echo $number['id']?>' value= <?echo $number['id']?>>
@@ -60,17 +62,26 @@ margin-top: 5%">
             <? endfor;?>
         </ul>
     </nav>
-    <?//var_dump($pageData['tasks']['count'][0])?>
-    <? if($_SESSION['admin'] == true): ?>
-    <input type="submit" name="action" class="btn btn-outline-danger" value="DELETE" >
-    <?endif;?>
+        <p>
+            <input type="submit" name="action" class="btn btn-info" value="sort" >
+            <? if($_SESSION['admin'] == true): ?>
+                <input type="submit" name="action" class="btn btn-outline-danger" style="margin-left: 20%" value="DELETE" >
+                <input type="submit" name="action" class="btn btn-outline-success" style="margin-left: 20%" value="finished" >
+            <?endif;?>
+        </p>
+            <select size="3" style="margin-right: 40%" multiple name="sort">
+                <option disabled>Choose sort column: </option>
+                <option value="email">Mail</option>
+                <option value="nickname">User name</option>
+                <option value="tstatus">Status</option>
+            </select>
+
+    <?//print_r($_POST) ?>
+
     </form>
 </center>
 <?php
 include 'elements/libs_body.php';
-echo '<pre>';
-//print_r($_POST);
-echo '</pre>';
 ?>
 </body>
 </html>

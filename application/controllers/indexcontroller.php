@@ -24,7 +24,7 @@ class IndexController extends \application\controllers\Controller
         $this->loadtasks($_GET['page_']);
         if(!empty($_POST))
         {
-            $this->del_tasks($_POST);
+            $this->action_data($_POST);
         }
         $this->view->render($this->pageTemplate, $this->pageData);
     }
@@ -46,11 +46,11 @@ class IndexController extends \application\controllers\Controller
     {
         $limit = 3;
         $start_string = ($current_page_num-1)*$limit;
-        $this->pageData['tasks'] = $this->model->load_tasks($limit, $start_string);
+        $this->pageData['tasks'] = $this->model->load_tasks($limit, $start_string, $_POST);
     }
-    public function del_tasks($post)
+    public function action_data($post)
     {
-        $this->model->delete_items($post);
+        $this->model->action_with_items($post);
         header("Refresh:0");
     }
 }

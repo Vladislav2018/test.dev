@@ -8,6 +8,9 @@ class AddtaskModel extends Model
 {
     public function add_task($email, $nickname, $task)
     {
+        $email = htmlspecialchars($email);
+        $nickname = htmlspecialchars($nickname);
+        $task = htmlspecialchars($task);
         $insert_request = 'INSERT INTO `tasks` (`nickname`, `email`, `task`) VALUES (:nickname, :email, :task)';
         $stmp = $this->db->prepare($insert_request);
         $stmp->bindValue(":nickname", $nickname, \PDO::PARAM_STR);

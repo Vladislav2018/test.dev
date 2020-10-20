@@ -8,6 +8,8 @@ class AuthModel extends Model
 {
     public function checkAdmin($email, $password)
     {
+        $email = htmlspecialchars($email);
+        $password = htmlspecialchars($password);
         $password = md5($password);
         $auth_request = 'SELECT * FROM admins WHERE email = :email AND password = :password';
         $stmp = $this->db->prepare($auth_request);
