@@ -22,8 +22,9 @@ class Router
                 $controllerName = ucfirst($route[1]. "Controller");
                 $modelName = ucfirst($route[1]. "Model");
             }
-            if(strstr($route[1], 'edittask') == true)
+            else if(strstr($route[1], 'edittask') == true)
             {
+
                 $controllerName = "EdittaskController";
                 $modelName = "EdittaskModel";
                 $action = "edit";
