@@ -10,6 +10,7 @@
 </head>
 <body>
 <center>
+    <h3><a href="/">Main</a></h3>
 <?//print_r($_POST)?>
     <p>Task id: <?echo $pageData['task_info'][0]['id']?></p>
     <p>Author's nickname: <?echo $pageData['task_info'][0]['nickname']?></p>
@@ -18,7 +19,7 @@
     <form method="post">
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Edit task</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="<?echo $pageData['task_info'][0]['task']?>" name="task" rows="4"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="" name="task" rows="4"><?echo $pageData['task_info'][0]['task']?></textarea>
         </div>
         <style>
 form
