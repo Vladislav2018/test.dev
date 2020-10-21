@@ -8,29 +8,31 @@ class IndexModel extends Model
 {
     public function load_tasks($tasks_per_page, $offset, $post)
     {
-        $ord_by = '';
-        $tasks_request = '';
-        if(isset($post['action']))
+        $res = array();
+        if(isset($post['action']) || (isset($_SESSION['sort'])))
         {
-            $ord_by = $post['sort'];
-            $tasks_request = "SELECT * FROM tasks ORDER BY :param ASC LIMIT :limit OFFSET :offset ";
+            $ord_by = $_SESSION['sort'];
+            //print_r($ord_by);
+            $tasks_request = "SELECT * FROM tasks ORDER BY "."`".$ord_by."`"." LIMIT :limit OFFSET :offset ";
             $stmp = $this->db->prepare($tasks_request);
-            $stmp->bindValue(":param", $ord_by, \PDO::PARAM_STR);
+            //$stmp->bindValue(":param", $ord_by, \PDO::PARAM_STR);
         }
         else
         {
+            echo 'Why am I here?';
             $tasks_request = 'SELECT * FROM tasks LIMIT :limit OFFSET :offset';
+            $stmp = $this->db->prepare($tasks_request);
         }
 
-        $stmp = $this->db->prepare($tasks_request);
+        //$stmp = $this->db->prepare($tasks_request);
         $stmp->bindValue(":limit", $tasks_per_page, \PDO::PARAM_INT);
         $stmp->bindValue(":offset", $offset, \PDO::PARAM_INT);
         $stmp->execute();
         //print_r($stmp->errorInfo());
-        $res = array();
         $res['count'] = $this->count_pages($tasks_per_page);
         $res['request'] = $stmp->fetchAll(\PDO::FETCH_ASSOC);
-        //var_dump($res);
+        //print_r($res);
+        //print_r($_SESSION);
         return $res;
     }
     public function count_pages($limit)

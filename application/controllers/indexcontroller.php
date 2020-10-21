@@ -46,6 +46,10 @@ class IndexController extends \application\controllers\Controller
     {
         $limit = 3;
         $start_string = ($current_page_num-1)*$limit;
+        if(isset($_POST['sort']))
+        {
+            $_SESSION['sort'] = $_POST['sort'];
+        }
         $this->pageData['tasks'] = $this->model->load_tasks($limit, $start_string, $_POST);
     }
     public function action_data($post)
