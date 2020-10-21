@@ -27,6 +27,7 @@
             <th scope="col" class = "task" style="width: 65%">Status</th>
             <?if($_SESSION['admin'] == true): ?>
             <th scope="col" class = "select" style="width: 65%">Select for action</th>
+                <th scope="col" class = "select" style="width: 65%">Edit</th>
             <? endif; ?>
         </tr>
         </thead>
@@ -43,6 +44,7 @@
                 <td>
                     <input type="checkbox" name = '<?echo $number['id']?>' value= <?echo $number['id']?>>
                 </td>
+                <td><a href="/edittask?id=<?echo $number['id']?>">Edit<a></td>
             <? endif; ?>
 
         </tr>

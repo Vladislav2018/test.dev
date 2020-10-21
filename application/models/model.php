@@ -1,6 +1,5 @@
 <?php
 
-
 namespace application\models;
 use core\DB as DB;
 

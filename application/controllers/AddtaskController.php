@@ -4,7 +4,6 @@
 namespace application\controllers;
 
 use application\models\AddtaskModel;
-use application\models\AuthModel;
 use application\views\View;
 
 class AddtaskController extends Controller

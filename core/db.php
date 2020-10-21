@@ -6,7 +6,7 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 class DB
 {
-    const host = "localhost";
+    const host = "test.dev";
     const user = "root";
     const pass = "root";
     const dn_name = "testdb";

@@ -19,7 +19,7 @@ class IndexModel extends Model
         }
         else
         {
-            echo 'Why am I here?';
+            
             $tasks_request = 'SELECT * FROM tasks LIMIT :limit OFFSET :offset';
             $stmp = $this->db->prepare($tasks_request);
         }
