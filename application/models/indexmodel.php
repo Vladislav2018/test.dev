@@ -9,9 +9,10 @@ class IndexModel extends Model
     public function load_tasks($tasks_per_page, $offset, $post)
     {
         $res = array();
-        if(isset($post['action']) || (isset($_SESSION['sort'])))
+        if(isset($post['action'])||(isset($_SESSION['sort']) && $_SESSION['sort'] != ''))
         {
             $ord_by = $_SESSION['sort'];
+
             //print_r($ord_by);
             $tasks_request = "SELECT * FROM tasks ORDER BY "."`".$ord_by."`"." LIMIT :limit OFFSET :offset ";
             $stmp = $this->db->prepare($tasks_request);
