@@ -13,6 +13,9 @@
 <body>
 <center>
     <h3><a href="/">Main</a></h3>
+    <?if (isset($pageData['feedback'])):?>
+        <h3 style="color: green"><?echo ($pageData['feedback'])?></h3>
+    <?endif;?>
     <form method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>

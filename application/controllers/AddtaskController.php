@@ -25,11 +25,11 @@ class AddtaskController extends Controller
         {
             $this->pageData['mode'] = 'user';
         }
-        $this->view->render($this->pageTemplate, $this->pageData);
         if(!empty($_POST))
         {
             $this->get_task();
         }
+        $this->view->render($this->pageTemplate, $this->pageData);
     }
 
     public function admin_view($email)
@@ -50,7 +50,7 @@ class AddtaskController extends Controller
         $result =  $this->model->add_task($_POST['email'], $_POST['nick'], $_POST['task']);
         if($result == true)
         {
-            header('Location: /');
+            $this->pageData['feedback'] = 'Task created successfully!';
         }
         else
         {
