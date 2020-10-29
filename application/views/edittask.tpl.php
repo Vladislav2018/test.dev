@@ -15,7 +15,7 @@
     <p>Task id: <?echo $pageData['task_info'][0]['id']?></p>
     <p>Author's nickname: <?echo $pageData['task_info'][0]['nickname']?></p>
     <p>Author's email: <?echo $pageData['task_info'][0]['email']?></p>
-    <p>Task id: <?echo $pageData['task_info'][0]['tstatus']?></p>
+    <p>Status: <?echo $pageData['task_info'][0]['tstatus']?></p>
     <form method="post">
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Edit task</label>
